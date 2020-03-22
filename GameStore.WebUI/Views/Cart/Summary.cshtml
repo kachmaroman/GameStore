@@ -1,0 +1,57 @@
+﻿@model GameStore.Domain.Entities.Cart
+
+<div id="cartList">
+    <div id="cart" class="btn-group btn-block">
+        <button type="button" data-toggle="dropdown" data-loading-text="Loading..." class="btn shopping-cart-buttom transition dropdown-toggle">
+            <i class="fa fa-shopping-cart"></i><span style="font-weight: 400;">@Model.Lines.Count() item(s) - @Model.ComputeTotalValue().ToString("c")</span>
+        </button>
+        <ul class="dropdown-menu pull-right">
+            @if (!Model.Lines.Any())
+            {
+                <li>
+                    <p class="text-center">Your shopping cart is empty!</p>
+                </li>
+            }
+            else
+            {
+                <li class="scrolled">
+                    <table class="table table-striped">
+                        <tbody>
+                            @foreach (var line in Model.Lines)
+                            {
+                                <tr>
+                                    <td class="text-center">
+                                        <a href="@Url.Action("Info", "Game", new { gameId = line.Game.GameId })">
+                                            <img src="@line.Game.GameImage" alt="" title="" class="img-thumbnail" style="max-width: 100px;">
+                                        </a>
+                                    </td>
+                                    <td class="text-left">@Html.ActionLink(line.Game.Name, "Info", "Game", new { shortId = line.Game.ShortId}, null)</td>
+                                    <td class="text-right">x @line.Quantity</td>
+                                    <td class="text-right">@((line.Game.Price * line.Quantity).ToString("c"))</td>
+                                    <td class="text-center">
+                                        <button type="button" title="Remove" class="btn btn-danger btn-xs" onclick="DeleteGame('@line.Game.GameId')">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </li>
+                <li id="emptyCartList">
+                    <div>
+                        <p class="text-right"><b>Total: @Model.ComputeTotalValue().ToString("c")</b><span></span></p>
+                        <p class="text-right">
+                            <a href="@Url.Action("List", "Cart")" style="text-decoration: none">
+                                <strong> <i class="fa fa-shopping-cart"></i> View Cart </strong>
+                            </a>&nbsp;&nbsp;&nbsp;
+                            <a href="@Url.Action("Checkout", "Cart")" style="text-decoration: none">
+                                <strong> <i class="fa fa-share"></i> Checkout </strong>
+                            </a>
+                        </p>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

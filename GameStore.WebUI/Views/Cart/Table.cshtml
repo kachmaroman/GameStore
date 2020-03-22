@@ -1,0 +1,47 @@
+﻿@model GameStore.Domain.Entities.Cart
+
+<div id="cartTable">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Quantity</th>
+            <th>Game</th>
+            <th class="text-right">Unit</th>
+            <th class="text-right">Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var line in Model.Lines)
+        {
+            <tr id="row_@line.Game.GameId">
+                <td class="text-center">@line.Quantity</td>
+                <td class="text-left">@Html.ActionLink(line.Game.Name, "Info", "Game", new { shortId = line.Game.ShortId }, new { style = "text-decoration:none"}) </td>
+                <td class="text-right">@line.Game.Price.ToString("c")</td>
+                <td class="text-right">
+                    @((line.Quantity * line.Game.Price).ToString("c"))
+                </td>
+                <td>
+                    <button type="submit" class="btn btn-danger" name="Remove" id="Remove" onclick="ConfirmDelete('@line.Game.GameId')">
+                        <span class='glyphicon glyphicon-trash'></span>
+                    </button>
+                </td>
+            </tr>
+        }
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="3" class="text-right">Total:</td>
+            <td class="text-right" id="total">
+                @Model.ComputeTotalValue().ToString("c")
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+    @if (Model.Lines.Any())
+    {
+        <div class="text-center">
+            @Html.ActionLink("Proceed to Checkout", "Checkout", null, new { @class = "btn btn-primary", style = "text-decoration:none" })
+        </div>
+    }
+</div>
+

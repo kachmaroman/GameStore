@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Your order is processed";
+}
+
+@{
+    if (ViewBag.Status.Contains("Successfully"))
+    {
+        <h2 style="text-align:center">Thank you!</h2>
+
+        <p>
+            <div class="text-success" style="text-align:center">
+                Your @ViewBag.Status
+            </div>
+        </p>
+    }
+    else
+    {
+        <h2 style="text-align:center">Sorry!</h2>
+
+        <div class="text-danger" style="text-align:center">
+            @ViewBag.Status
+        </div>
+    }
+}

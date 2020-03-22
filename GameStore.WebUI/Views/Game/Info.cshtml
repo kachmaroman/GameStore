@@ -1,0 +1,225 @@
+﻿@using GameStore.Domain.Entities
+@model Game
+
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var requirements = ViewBag.Requirements as Requirements;
+}
+
+<main class="product-preview">
+    <div class="product-preview-bg" style="background-image: url('@Model.BackImage')"></div>
+    <div class="container">
+        <div class="product-preview-body">
+            <ol class="breadcrumb product-preview-breadcrumb"><li></li></ol>
+            <h1>@Model.Name</h1>
+            <div class="product-content">
+                <div class="left-content">
+                    <div class="img-block">
+                        <div class="img-block-bg"><img src="@Model.GameImage" alt=""></div>
+                        <div class="img-block-cart">
+                        @if (Model.ReleaseDate < DateTime.Now && Model.Quantity > 0)
+                        {
+                            <button class="product-buy transition" type="button" onclick="AddGame('@Model.GameId')"><i class="fa fa-shopping-cart"></i> <span>ADD TO CART</span></button>
+                        }
+                        </div>
+                    </div>
+                    <div class="product-content-price">
+                        <div class="product-content-price-container">
+                            <p class="price-value"><b>@Model.Price.ToString("c")</b></p>
+                        </div>
+                    </div>
+                    <div class="product-info hidden-xs hidden-sm">
+                        <ul class="product-info-list">
+                            <li class="product-info-item">
+                                <div class="product-info-key">Genre: </div>
+                                <div class="product-info-value">
+                                    <ul class="product-info-list">
+                                        <li><a href="" class="product-info-link">@Model.Category.Name</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="product-info-item">
+                                <div class="product-info-key">Release date: </div>
+                                <div class="product-info-value">@Model.ReleaseDate.ToLongDateString()</div>
+                            </li>
+                            <li class="product-info-item">
+                                <div class="product-info-key">Publisher: </div>
+                                <div class="product-info-value">
+                                    <ul class="product-info-list">
+                                        <li><a href="#" class="product-info-link product-info-link-default">@Model.Publisher.Name</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="right-content">
+                    <div class="product-header">
+                        <div class="product-content-price">
+                            <div class="product-content-price-container">
+                                <p class="price-value"><b>@Model.Price.ToString("c")</b></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info hidden-md hidden-lg">
+                        <ul class="product-info-list">
+                            <li class="product-info-item">
+                                <div class="product-info-key">Category: </div>
+                                <div class="product-info-value">
+                                    <ul class="product-info-list">
+                                        <li><a href="" class="product-info-link">@Model.Category.Name</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="product-info-item">
+                                <div class="product-info-key">Release date: </div>
+                                <div class="product-info-value">@Model.ReleaseDate.ToLongDateString()</div>
+                            </li>
+                            <li class="product-info-item">
+                                <div class="product-info-key">Publisher: </div>
+                                <div class="product-info-value">
+                                    <ul class="product-info-list">
+                                        <li><a href="#" class="product-info-link product-info-link-default">@Model.Publisher.Name</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    @if (!string.IsNullOrEmpty(Model.PreviewLink))
+                    {
+                        <div class="product_video-container">
+                            <iframe src="https://www.youtube-nocookie.com/embed/@Model.PreviewLink?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </div>
+                    }
+                    <div class="product_block">
+                        <h2 class="product_block-title">Description</h2>
+                        <div class="product_block-content">
+                            <p style="white-space: pre-wrap;">@Model.Description</p>
+                        </div>
+                    </div>
+
+                    @if (requirements != null)
+                    {
+                        <div class="product_block">
+                            <h2 class="product_block-title">Minimum Requirements</h2>
+                            <div class="product_block-content">
+                                <div role="tabpanel">
+                                    <ul class="nav nav-tabs product_block-tabs" role="tablist">
+                                        @if (!string.IsNullOrEmpty(requirements.WinOS))
+                                        {
+                                            <li role="presentation" class="active"><a href="#windows" aria-controls="windows" role="tab" data-toggle="tab">Windows</a></li>
+                                        }
+                                        @if (!string.IsNullOrEmpty(requirements.LinOS))
+                                        {
+                                            <li role="presentation"><a href="#linux" aria-controls="linux" role="tab" data-toggle="tab">Linux</a></li>
+                                        }
+                                        @if (!string.IsNullOrEmpty(requirements.MacOS))
+                                        {
+                                            <li role="presentation"><a href="#mac" aria-controls="mac" role="tab" data-toggle="tab">Mac</a></li>
+                                        }
+                                    </ul>
+                                    <div class="tab-content">
+                                        <!-- #windows -->
+                                        <div role="tabpanel" class="tab-pane active" id="windows">
+                                            <ul class="product_req-container">
+                                                <li class="product_req-item">
+                                                    <div class="product_req-key">OS</div>
+                                                    <div class="product_req-value">@requirements.WinOS</div>
+                                                </li>
+                                                <li class="product_req-item">
+                                                    <div class="product_req-key">CPU</div>
+                                                    <div class="product_req-value">@requirements.WinCPU</div>
+                                                </li>
+                                                <li class="product_req-item">
+                                                    <div class="product_req-key">RAM</div>
+                                                    <div class="product_req-value">@requirements.WinRAM</div>
+                                                </li>
+                                                <li class="product_req-item">
+                                                    <div class="product_req-key">GPU</div>
+                                                    <div class="product_req-value">@requirements.WinGPU</div>
+                                                </li>
+                                                <li class="product_req-item">
+                                                    <div class="product_req-key">Storage</div>
+                                                    <div class="product_req-value">@requirements.WinStorage</div>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- #linux -->
+                                        <div role="tabpanel" class="tab-pane" id="linux">
+                                            <ul class="product_req-container">
+                                                <li class="product_req-item">
+                                                    <div class="product_req-key">OS</div>
+                                                    <div class="product_req-value">@requirements.LinOS</div>
+                                                </li>
+                                                <li class="product_req-item">
+                                                    <div class="product_req-key">CPU</div>
+                                                    <div class="product_req-value">@requirements.LinCPU</div>
+                                                </li>
+                                                <li class="product_req-item">
+                                                    <div class="product_req-key">RAM</div>
+                                                    <div class="product_req-value">@requirements.LinRAM</div>
+                                                </li>
+                                                <li class="product_req-item">
+                                                    <div class="product_req-key">GPU</div>
+                                                    <div class="product_req-value">@requirements.LinGPU</div>
+                                                </li>
+                                                <li class="product_req-item">
+                                                    <div class="product_req-key">Storage</div>
+                                                    <div class="product_req-value">@requirements.LinStorage</div>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- #mac -->
+                                        <div role="tabpanel" class="tab-pane" id="mac">
+                                            <ul class="product_req-container">
+                                                <li class="product_req-item">
+                                                    <div class="product_req-key">OS</div>
+                                                    <div class="product_req-value">@requirements.MacOS</div>
+                                                </li>
+                                                <li class="product_req-item">
+                                                    <div class="product_req-key">CPU</div>
+                                                    <div class="product_req-value">@requirements.MacCPU</div>
+                                                </li>
+                                                <li class="product_req-item">
+                                                    <div class="product_req-key">RAM</div>
+                                                    <div class="product_req-value">@requirements.MacRAM</div>
+                                                </li>
+                                                <li class="product_req-item">
+                                                    <div class="product_req-key">GPU</div>
+                                                    <div class="product_req-value">@requirements.MacGPU</div>
+                                                </li>
+                                                <li class="product_req-item">
+                                                    <div class="product_req-key">Storage</div>
+                                                    <div class="product_req-value">@requirements.MacStorage</div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="product_block">
+                        <h2 class="product_block-title">Comments</h2>
+                        <script>
+                            (function (d, s, id) {
+                                var js, fjs = d.getElementsByTagName(s)[0];
+                                if (d.getElementById(id)) return;
+                                js = d.createElement(s); js.id = id;
+                                js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12&appId=1615767088500840&autoLogAppEvents=1';
+                                fjs.parentNode.insertBefore(js, fjs);
+                            }(document, 'script', 'facebook-jssdk'));</script>
+
+                        <div class="product_block-content">
+                            <div class="fb-comments" data-href="http://localhost:53985/Game/GameInfo?gameId=@Model.ShortId" data-width="500" data-numposts="5"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

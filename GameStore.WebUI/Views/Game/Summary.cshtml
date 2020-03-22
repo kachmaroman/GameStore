@@ -1,0 +1,19 @@
+﻿@model GameStore.Domain.Entities.Game
+
+<li class="itemBlock padding5">
+    <div class="listItem">
+        <div class="image">
+            <a href="@("/Games/Info/" + Model.ShortId)" class="name transition"><img src="@Model.GameImage" alt=""></a>
+        </div>
+        <div class="caption">
+            <a href="@("/Games/Info/" + Model.ShortId)" class="name transition">@Model.Name</a>
+            <div class="keys"><b>Genre:</b><a href="" style="text-decoration: none"> @Model.Category.Name</a></div>
+        </div>
+        <div class="footer-caption">
+            <div class="price-caption">
+                <div class="price-caption-container"><span class="price-value">@Model.Price.ToString("c")</span><span class="price-currency"></span></div>
+            </div>
+            <div class="button-group"><button class="transition" type="button" onclick="AddGame('@Model.GameId')"><i class="fa fa-shopping-cart"></i><span class="hidden-xs hidden-sm hidden-md">ADD TO CART</span></button></div>
+        </div>
+    </div>
+</li>

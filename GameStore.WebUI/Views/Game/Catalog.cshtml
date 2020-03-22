@@ -1,0 +1,61 @@
+﻿
+@using PagedList.Mvc
+@model GameStore.WebUI.Models.GamesListViewModel
+
+@{
+    ViewBag.Title = "Games";
+    ViewBag.isActive = true;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    @if (Model.PagedGames.Any())
+    {
+        <div class="col-md-12 padding0">
+
+            @using (Html.BeginForm("Catalog", "Game"))
+            {
+                @Html.HiddenFor(n => Model.Name)
+
+                <div class="filter_block">
+                    <div>
+                        <div class="filter-group">
+                            <b class="">Filter by genre:</b>
+                            @Html.DropDownListFor(g => Model.Genre, new SelectList(Model.Categories), "All Genres", new {@class = "form-control"})
+                        </div>
+                        <div class="filter-group">
+                            <b class="">Sort by:</b>
+                            @Html.DropDownListFor(s => Model.SortBy, new SelectList(Model.Sorts, "Key", "Value"), "Default", new {@class = "form-control"})
+                        </div>
+                        <div class="filter-group"><input class="linkBut transition" type="submit" value="Filter"></div>
+                    </div>
+                    
+                    @if (ViewBag.Name != null)
+                    {
+                        <div>
+                            <span id="result">@ViewBag.Count matches for <b>'@ViewBag.Name'</b></span>
+                        </div>
+                    }
+                </div>
+            }
+
+            <ul class="col-md-12 flex padding0 catalog">
+                @foreach (var p in Model.PagedGames)
+                {
+                    @Html.Partial("Summary", p)
+                }
+            </ul>
+
+        </div>
+
+        <div class="text-center">
+            @Html.PagedListPager(Model.PagedGames, page => Url.Action("Catalog", 
+                new { page, name = Model.Name, genre = Model.Genre , sortby = Model.SortBy }), 
+                PagedListRenderOptions.OnlyShowFivePagesAtATime)
+        </div>
+    }
+    else
+    {
+        @:Your search <b>@Model.Name</b> did not match any products.
+    }
+</div>

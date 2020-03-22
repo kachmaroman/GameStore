@@ -1,0 +1,136 @@
+﻿@model IEnumerable<GameStore.Domain.Entities.Game>
+
+@{
+    ViewBag.Title = "Games";
+    ViewBag.isActive = true;
+}
+
+<style>
+    .img {
+        position: relative;
+        float: left;
+        min-width: 100%;
+        resize: both;
+        height: 250px;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .owl-itemImg {
+        position: relative;
+        width: 100%;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+
+@section carousel {
+    <div class="carousel">
+        <div class="owl-carousel owl-theme transition" id="carouselOne">
+            <!-- slide #1 -->
+            <div class="slide">
+                <div class="row">
+                    <div class="col-xs-12 slideRow">
+                        <div class="col-md-6 slideImg"><img src="~/Content/img/battlefield-transparent.png" alt=""></div>
+                        <div class="col-md-6 slideBox">
+                            <h3>Our Mission</h3>
+                            <p>To become THE global gaming destination of choice by
+                                bringing the magic of games to everyone, everywhere.
+                                We’re creating the portal to a million magical worlds. And
+                                damn, it’s going to be good.</p>
+                            <a href="#" class="linkBut transition">Read More <i class="fa fa-angle-double-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end slide #1 -->
+            <!-- slide #2 -->
+            <div class="slide">
+                <div class="row">
+                    <div class="col-xs-12 slideRow">
+                        <div class="col-md-6 slideImg"><img src="~/Content/img/battlefield_render_by_graiigh.png" alt=""></div>
+                        <div class="col-md-6 slideBox">
+                            <h3>STRATEGY</h3>
+                            <p>We’re focused on playing a major role in the digital video game ecosystem and becoming the platform of choice to buy, discuss, promote and publish games. We place the customer at the centre of everything we do, driven by our technology, data, community, brand, partnerships and own publishing division.</p>
+                            <a href="#" class="linkBut transition">Read More <i class="fa fa-angle-double-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end slide #2 -->
+        </div>
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        $('#carouselOne').owlCarousel({
+            loop: true,
+            nav: true,
+            navText: ['<i class="fa fa-angle-left"  aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+            dots: true,
+            autoplay: true,
+            smartSpeed: 1000,
+            autoplayTimeout: 10000,
+            items: 1
+        });
+    });
+</script>
+
+<div class="container">
+    <h1 align="center">COMING SOON</h1>
+    <div class="owl-carousel" style="white-space: nowrap" id="carouselGames">
+        @foreach (var game in Model)
+        {
+            <a href="@("Games/Info/" + game.ShortId)">
+                <div class="owl-itemImg" style="background-image: url('@game.GameImage');">
+                    <div class="owl-itemImgBg owl-itemImgTop">@game.Name</div>
+                    <div class="owl-itemImgBg owl-itemImgBottom">@game.Price.ToString("c")</div>
+                </div>
+            </a>
+        }
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#carouselGames').owlCarousel({
+            loop: true,
+            nav: true,
+            navText: ['<i class="fa fa-chevron-left"  aria-hidden="true"></i>', '<i class="fa fa-chevron-right" aria-hidden="true"></i>'],
+            dots: true,
+            autoplay: true,
+            smartSpeed: 50,
+            autoplayTimeout: 7000,
+            margin: 10,
+            responsive: {
+                100: {
+                    items: 1,
+                    slideBy: 1
+                },
+                400: {
+                    items: 2,
+                    slideBy: 2
+                },
+                600: {
+                    items: 3,
+                    slideBy: 3
+                },
+                800: {
+                    items: 4,
+                    slideBy: 4
+                },
+                1000: {
+                    items: 5,
+                    slideBy: 5
+                },
+                1200: {
+                    items: 6,
+                    slideBy: 6
+                }
+            }
+        });
+    });
+</script>

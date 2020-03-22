@@ -1,0 +1,38 @@
+﻿@model GameStore.Domain.Entities.Customer
+
+@{
+    ViewBag.Title = "Your Cart : Billing Details";
+}
+
+<div class="container">
+
+    <h2>Billing Details</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email)
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Phone)
+            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="text-center">
+            <input class="btn btn-primary" type="submit" value="PLACE ORDER" />
+        </div>
+    }
+
+</div>

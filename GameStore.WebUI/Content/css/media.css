@@ -1,0 +1,131 @@
+@media (max-width: 767px) {
+	.itemBlock {
+		width: 50%;
+	}
+	.owl-itemImg {
+		height: 350px;
+	}
+	.filter_block>div {
+		width: 100%;
+	}
+	.filter_block>div .filter-group {
+		width: 48%;
+		-webkit-flex-wrap: nowrap; /* Safari */
+		flex-wrap: nowrap;
+	}
+	.filter_block>div .filter-group select {
+		width: 100%;
+	}
+}
+
+@media (max-width: 592px) {
+	.filter_block>div .filter-group {
+		width: 100%;
+		-webkit-flex-wrap: wrap; /* Safari */
+		flex-wrap: wrap;
+	}
+	.filter_block>div .filter-group>b {
+		width: 100%;
+		margin: 5px;
+		text-align: left;
+	}
+	.filter_block>div .filter-group>a.linkBut {
+		width: 100%;
+		text-align: center;
+	}
+}
+
+@media (min-width: 768px) {
+	.navbar-header {
+		display: none;
+	}
+	.itemBlock {
+		width: 33.33%;
+	}
+	.owl-itemImg {
+		height: 250px;
+	}
+}
+
+@media (min-width: 992px) {
+	.itemBlock {
+		width: 25%;
+	}
+	.owl-itemImg {
+		height: 250px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.itemBlock {
+		width: 20%;
+	}
+	.owl-itemImg {
+		height: 250px;
+	}
+}
+
+@media (max-width: 991px) {
+	.headFlex {
+		-webkit-justify-content: center; /* Safari */
+		justify-content: center;
+	}
+	.slideImg {
+		display: none;
+	}
+	.headFlex div {
+		margin-bottom: 5px;
+	}
+	.product-content {
+		-webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+	}
+	.product-preview-bg {
+		background: radial-gradient(circle,#0f4260,#17181b)!important;
+	}
+	.product-content .right-content .product-header {
+		display: none;
+	}
+	.product-content .product-content-price {
+		margin-top: 20px;
+		display: block;
+	}
+	.product-content .product-content-price p.price-value {
+		color: #333;
+		font-size: 36px;
+	}
+	ul.product_req-container li.product_req-item {
+		font-size: 16px;
+	}
+	ul.product_req-container li.product_req-item .product_req-key {
+		width: 100%;
+	}
+	ul.devs-list>li {
+		width: 100%;
+	}
+	.filter_block {
+		-webkit-justify-content: center; /* Safari */
+		justify-content: center;
+	}
+	footer .fBox div {
+		padding: 5px 0;
+		margin: 0 auto;
+	}
+}
+
+@media (max-width: 1199px) {
+	.headFlex {
+		margin-top: 25px;
+		-webkit-justify-content: space-around; /* Safari */
+ 		justify-content: space-around;
+	}
+	.info {
+		margin-top: 15px;
+	}
+}
+

@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6378D030-B9F0-4C4C-B3D4-2F99B8FD522E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GameStore.Domain</RootNamespace>
+    <AssemblyName>GameStore.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.1\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.1\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.1\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.1\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\IAccountRepository.cs" />
+    <Compile Include="Abstract\IGameRepository.cs" />
+    <Compile Include="Concrete\EfAccountRepository.cs" />
+    <Compile Include="Concrete\EfDbContext.cs" />
+    <Compile Include="Concrete\EfGameRepository.cs" />
+    <Compile Include="Concrete\EmailInfo.cs" />
+    <Compile Include="Entities\Administrator.cs" />
+    <Compile Include="Entities\Cart.cs" />
+    <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\Game.cs" />
+    <Compile Include="Entities\Order.cs" />
+    <Compile Include="Entities\Publisher.cs" />
+    <Compile Include="Entities\Requirements.cs" />
+    <Compile Include="Migrations\201906151728569_InitCreate.cs" />
+    <Compile Include="Migrations\201906151728569_InitCreate.Designer.cs">
+      <DependentUpon>201906151728569_InitCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906151751338_Empty.cs" />
+    <Compile Include="Migrations\201906151751338_Empty.Designer.cs">
+      <DependentUpon>201906151751338_Empty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906151811469_AddPublisher.cs" />
+    <Compile Include="Migrations\201906151811469_AddPublisher.Designer.cs">
+      <DependentUpon>201906151811469_AddPublisher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906151841307_RemovePublisher.cs" />
+    <Compile Include="Migrations\201906151841307_RemovePublisher.Designer.cs">
+      <DependentUpon>201906151841307_RemovePublisher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906151843220_AddPublisherReference.cs" />
+    <Compile Include="Migrations\201906151843220_AddPublisherReference.Designer.cs">
+      <DependentUpon>201906151843220_AddPublisherReference.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906151911221_AddCategory.cs" />
+    <Compile Include="Migrations\201906151911221_AddCategory.Designer.cs">
+      <DependentUpon>201906151911221_AddCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906151917595_RemoveCategoryFromGame.cs" />
+    <Compile Include="Migrations\201906151917595_RemoveCategoryFromGame.Designer.cs">
+      <DependentUpon>201906151917595_RemoveCategoryFromGame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906151919015_Empty1.cs" />
+    <Compile Include="Migrations\201906151919015_Empty1.Designer.cs">
+      <DependentUpon>201906151919015_Empty1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906161307556_AddDataTypeToGame.cs" />
+    <Compile Include="Migrations\201906161307556_AddDataTypeToGame.Designer.cs">
+      <DependentUpon>201906161307556_AddDataTypeToGame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906171106036_AddQty_Game.cs" />
+    <Compile Include="Migrations\201906171106036_AddQty_Game.Designer.cs">
+      <DependentUpon>201906171106036_AddQty_Game.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906171111493_RestrictionQty.cs" />
+    <Compile Include="Migrations\201906171111493_RestrictionQty.Designer.cs">
+      <DependentUpon>201906171111493_RestrictionQty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906171227198_AddCreatedAt_Order.cs" />
+    <Compile Include="Migrations\201906171227198_AddCreatedAt_Order.Designer.cs">
+      <DependentUpon>201906171227198_AddCreatedAt_Order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906171404457_AddShortId_Game.cs" />
+    <Compile Include="Migrations\201906171404457_AddShortId_Game.Designer.cs">
+      <DependentUpon>201906171404457_AddShortId_Game.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906171409285_RemoveShortId_Game.cs" />
+    <Compile Include="Migrations\201906171409285_RemoveShortId_Game.Designer.cs">
+      <DependentUpon>201906171409285_RemoveShortId_Game.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906171410071_AddIndexShortId_Game.cs" />
+    <Compile Include="Migrations\201906171410071_AddIndexShortId_Game.Designer.cs">
+      <DependentUpon>201906171410071_AddIndexShortId_Game.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906171428576_AddUniqueIndexShortId_Game.cs" />
+    <Compile Include="Migrations\201906171428576_AddUniqueIndexShortId_Game.Designer.cs">
+      <DependentUpon>201906171428576_AddUniqueIndexShortId_Game.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906181641489_AddMaxLengths.cs" />
+    <Compile Include="Migrations\201906181641489_AddMaxLengths.Designer.cs">
+      <DependentUpon>201906181641489_AddMaxLengths.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906181857369_AddCategoryAndPublisherFK.cs" />
+    <Compile Include="Migrations\201906181857369_AddCategoryAndPublisherFK.Designer.cs">
+      <DependentUpon>201906181857369_AddCategoryAndPublisherFK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201906151728569_InitCreate.resx">
+      <DependentUpon>201906151728569_InitCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906151751338_Empty.resx">
+      <DependentUpon>201906151751338_Empty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906151811469_AddPublisher.resx">
+      <DependentUpon>201906151811469_AddPublisher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906151841307_RemovePublisher.resx">
+      <DependentUpon>201906151841307_RemovePublisher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906151843220_AddPublisherReference.resx">
+      <DependentUpon>201906151843220_AddPublisherReference.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906151911221_AddCategory.resx">
+      <DependentUpon>201906151911221_AddCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906151917595_RemoveCategoryFromGame.resx">
+      <DependentUpon>201906151917595_RemoveCategoryFromGame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906151919015_Empty1.resx">
+      <DependentUpon>201906151919015_Empty1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906161307556_AddDataTypeToGame.resx">
+      <DependentUpon>201906161307556_AddDataTypeToGame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906171106036_AddQty_Game.resx">
+      <DependentUpon>201906171106036_AddQty_Game.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906171111493_RestrictionQty.resx">
+      <DependentUpon>201906171111493_RestrictionQty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906171227198_AddCreatedAt_Order.resx">
+      <DependentUpon>201906171227198_AddCreatedAt_Order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906171404457_AddShortId_Game.resx">
+      <DependentUpon>201906171404457_AddShortId_Game.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906171409285_RemoveShortId_Game.resx">
+      <DependentUpon>201906171409285_RemoveShortId_Game.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906171410071_AddIndexShortId_Game.resx">
+      <DependentUpon>201906171410071_AddIndexShortId_Game.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906171428576_AddUniqueIndexShortId_Game.resx">
+      <DependentUpon>201906171428576_AddUniqueIndexShortId_Game.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906181641489_AddMaxLengths.resx">
+      <DependentUpon>201906181641489_AddMaxLengths.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906181857369_AddCategoryAndPublisherFK.resx">
+      <DependentUpon>201906181857369_AddCategoryAndPublisherFK.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

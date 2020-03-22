@@ -1,0 +1,120 @@
+﻿@model GameStore.WebUI.Models.GameEditViewModel
+
+@{
+    ViewBag.Title = "Admin panel: edit product";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="panel">
+    <div class="panel-heading">
+        <h3>Edit game «@Model.Game.Name»</h3>
+    </div>
+
+    @using (Html.BeginForm("Edit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="panel-body">
+            @Html.HiddenFor(m => m.Game.GameId)
+            <div class="form-group">
+                @Html.LabelFor(m => m.Game.Name)
+                @Html.TextBoxFor(m => m.Game.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Game.Name, "", new { @class = "text-danger" })
+            </div>
+            
+            <div class="form-group">
+                @Html.LabelFor(m => m.Game.Description)
+                @Html.TextAreaFor(m => m.Game.Description, new { @class = "form-control", rows = 5 })
+                @Html.ValidationMessageFor(m => m.Game.Description, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Game.Category)
+                @Html.DropDownListFor(s => Model.Game.CategoryId, new SelectList(Model.Categories, "Key", "Value"), new {@class = "form-control"})
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Game.Price)
+                @Html.TextBoxFor(m => m.Game.Price, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Game.Price, "", new { @class = "text-danger" })
+            </div>
+            
+            <div class="form-group">
+                @Html.LabelFor(m => m.Game.Quantity)
+                @Html.TextBoxFor(m => m.Game.Quantity, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Game.Quantity, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Game.Publisher)
+                @Html.DropDownListFor(s => Model.Game.PublisherId, new SelectList(Model.Publishers, "Key", "Value"), new {@class = "form-control"})
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Game.ReleaseDate)
+                @Html.EditorFor(model => model.Game.ReleaseDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Game.ReleaseDate, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Game.PreviewLink)
+                @Html.TextBoxFor(m => m.Game.PreviewLink, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Game.PreviewLink, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <div style="position:relative;">
+                    <label>Game Image</label>
+                    <a class='btn' href='javascript:;'>
+                        Select file...
+                        <input type="file" name="gameImage" size="40"
+                               style="position:absolute;z-index:2;top:0;
+                               left:0;filter: alpha(opacity=0); opacity:0;
+                               background-color:transparent;color:transparent;"
+                               onchange='$("#upload-file-info-gameImage").html($(this).val());'>
+                    </a>
+                    <span class='label label-info' id="upload-file-info-gameImage"></span>
+                </div>
+
+                @if (Model.Game.GameImage == null)
+                {
+                    <div class="form-control-static">No image</div>
+                }
+                else
+                {
+                    <img class="img-thumbnail" width="150" height="150" src="@Model.Game.GameImage"/>
+                }
+            </div>
+            <div class="form-group">
+                <div style="position:relative;">
+                    <label>Background Image</label>
+                    <a class='btn' href='javascript:;'>
+                        Select file...
+                        <input type="file" name="fonImage" size="40"
+                           style="position:absolute;z-index:2;top:0;
+                           left:0;filter: alpha(opacity=0); opacity:0;
+                           background-color:transparent;color:transparent;"
+                           onchange='$("#upload-file-info-fonImage").html($(this).val());'>
+                    </a>
+                    <span class='label label-info' id="upload-file-info-fonImage"></span>
+                </div>
+
+                @if (Model.Game.BackImage == null)
+                {
+                    <div class="form-control-static">No background image</div>
+                }
+                else
+                {
+                    <img class="img-thumbnail" width="150" height="150" src="@Model.Game.BackImage" />
+                }
+            </div>
+        </div>
+        <div class="panel-footer">
+            <input type="submit" value="Save" class="btn btn-primary" />
+            @Html.ActionLink("Cancel edit and go to game list", "Index", null, new
+            {
+                @class = "btn btn-default"
+            })
+        </div>
+    }
+</div>

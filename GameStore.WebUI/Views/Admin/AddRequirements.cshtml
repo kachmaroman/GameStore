@@ -1,0 +1,94 @@
+﻿@model GameStore.Domain.Entities.Requirements
+
+@{
+    ViewBag.Title = "Admin panel: add requirements";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="panel">
+    <div class="panel-heading">
+        <h3>Select Game</h3>
+    </div>
+
+    @using (Html.BeginForm("AddRequirements", "Admin"))
+    {
+        @Html.AntiForgeryToken()
+       
+        <div class="panel-body">
+            <div class="form-group">
+                @Html.DropDownListFor(m => m.GameId, ViewBag.Games as IEnumerable<SelectListItem>)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.WinOS)
+                @Html.TextBoxFor(m => m.WinOS, new {@class = "form-control"})
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.WinCPU)
+                @Html.TextBoxFor(m => m.WinCPU, new {@class = "form-control"})
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.WinRAM)
+                @Html.TextBoxFor(m => m.WinRAM, new {@class = "form-control"})
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.WinGPU)
+                @Html.TextBoxFor(m => m.WinGPU, new {@class = "form-control"})
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.WinStorage)
+                @Html.TextBoxFor(m => m.WinStorage, new {@class = "form-control"})
+            </div>
+            <hr />
+            <div class="form-group">
+                @Html.LabelFor(m => m.LinOS)
+                @Html.TextBoxFor(m => m.LinOS, new {@class = "form-control"})
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.LinCPU)
+                @Html.TextBoxFor(m => m.LinCPU, new {@class = "form-control"})
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.LinRAM)
+                @Html.TextBoxFor(m => m.LinRAM, new {@class = "form-control"})
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.LinGPU)
+                @Html.TextBoxFor(m => m.LinGPU, new {@class = "form-control"})
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.LinStorage)
+                @Html.TextBoxFor(m => m.LinStorage, new {@class = "form-control"})
+            </div>
+            <hr />
+            <div class="form-group">
+                @Html.LabelFor(m => m.MacOS)
+                @Html.TextBoxFor(m => m.MacOS, new {@class = "form-control"})
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.MacCPU)
+                @Html.TextBoxFor(m => m.MacCPU, new {@class = "form-control"})
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.MacRAM)
+                @Html.TextBoxFor(m => m.MacRAM, new {@class = "form-control"})
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.MacGPU)
+                @Html.TextBoxFor(m => m.MacGPU, new {@class = "form-control"})
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.MacStorage)
+                @Html.TextBoxFor(m => m.MacStorage, new {@class = "form-control"})
+            </div>
+        </div>
+        <div class="panel-footer">
+            <input type="submit" value="Add" class="btn btn-primary" />
+            @Html.ActionLink("Cancel edit and go to game list", "Index", null, new
+            {
+                @class = "btn btn-default"
+            })
+        </div>
+    }
+</div>
+
